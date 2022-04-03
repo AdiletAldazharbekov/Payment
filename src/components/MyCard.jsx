@@ -1,40 +1,122 @@
 import React, { useContext, useState } from "react";
 import PaymentContext from "../context/PaymentContext";
+import PaymentList from "./PaymentList";
+import Button from "react-bootstrap/Button";
+import InputElement from "react-input-mask/lib/react-input-mask.production.min";
 
 const MyCard = () => {
 	const { addPayment } = useContext(PaymentContext);
-	const [newPay, setNewPay] = useState({});
+
 	const [cardNumber, setCardNumber] = useState("");
 	const [expDate, setexpDate] = useState("");
 	const [cvv, setCvv] = useState("");
-	const [amount, setAmount] = useState(0);
+	const [amount, setAmount] = useState();
 
-	const newFeedback = {
-		"card-number": "1234123412341234",
-		date: "08/23",
-		cvv: "135",
-		amount: 1525,
+	const handleCardNumberChange = (e) => {
+		setCardNumber(e.target.value);
 	};
 
+	const handlExpDateChange = (e) => {
+		setexpDate(e.target.value);
+	};
+
+	const handleCvvChange = (e) => {
+		setCvv(e.target.value);
+	};
+
+	const handleAmountChange = (e) => {
+		setAmount(e.target.value);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const newPay = {};
+		let isError = false;
+		if (cardNumber.length == 19) {
+			newPay.cardNumber = cardNumber;
+		} else {
+			isError = true;
+			alert("Номер карты заполнен не корректно");
+			return
+		}
+		if (expDate.length == 7) {
+			newPay.expDate = expDate;
+		} else {
+			isError = true;
+			alert("Срок карты заполнен не корректно");
+			return
+		}
+		if (cvv.length == 3) {
+			newPay.cvv = cvv;
+		} else {
+			isError = true;
+			alert("cvv код заполнен не корректно");
+			return
+		}
+		if (+amount > 0) {
+			newPay.amount = +amount;
+		} else {
+			isError = true;
+			alert("Сумма платежа заполнен не корректно, должно быть больше 0");
+			return
+		}
+		if (!isError) {
+			addPayment(newPay);
+			setCardNumber("");
+			setexpDate("");
+			setCvv("");
+			setAmount("");
+		}
+	};
 	return (
-		<div className="my-card">
-			<p>Введите данные карты </p>
-			<input
-				className="card-number"
-				type="text"
-				placeholder="Card Number"
-			/>
-			<div className="card-opt">
-				<input className="exp-date" type="text" placeholder="mm/yyyy" />
-				<input className="cvv" type="text" placeholder="cvv" />
-				<input className="amount" type="text" placeholder="0.00" />
-			</div>
-			<div className="conf">
-				<button onClick={() => addPayment(newFeedback)}>
-					Оплатить
-				</button>
-			</div>
-		</div>
+		<>
+			<form onSubmit={handleSubmit}>
+				<div className="my-card">
+					<p>Введите данные карты </p>
+
+					<InputElement
+						mask="9999 9999 9999 9999"
+						type="text"
+						className="form-control card-number"
+						onChange={handleCardNumberChange}
+						value={cardNumber}
+						placeholder="Card Number"
+					/>
+					<div className="card-opt">
+						<InputElement
+							mask="99/2029"
+							type="text"
+							className="form-control exp-date"
+							onChange={handlExpDateChange}
+							value={expDate}
+							placeholder="mm/yyyy"
+						/>
+						<InputElement
+							mask="999"
+							type="text"
+							className="form-control cvv"
+							onChange={handleCvvChange}
+							value={cvv}
+							placeholder="cvv"
+						/>
+						<InputElement
+							className="form-control amount"
+							// mask=""
+							type="text"
+							onChange={handleAmountChange}
+							value={amount}
+							placeholder="amount"
+						/>
+					</div>
+					<div>
+						<Button type="submit" variant="warning">
+							<strong>Оплатить</strong>
+						</Button>
+					</div>
+				</div>
+			</form>
+			<PaymentList />
+		</>
 	);
 };
 

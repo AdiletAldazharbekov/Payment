@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import MyCard from "./components/MyCard";
 import { PaymentProvider } from "./context/PaymentContext";
