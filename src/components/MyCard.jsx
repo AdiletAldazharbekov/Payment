@@ -13,52 +13,52 @@ const MyCard = () => {
 	const [amount, setAmount] = useState();
 
 	const handleCardNumberChange = (e) => {
-		setCardNumber(e.target.value);
+		setCardNumber(e.target.value.replace(/[\s_]+/g, ""));
 	};
 
 	const handlExpDateChange = (e) => {
-		setexpDate(e.target.value);
+		setexpDate(e.target.value.replace(/[^0-9/]+/g, ""));
 	};
 
 	const handleCvvChange = (e) => {
-		setCvv(e.target.value);
+		setCvv(e.target.value.replace(/_/g, ""));
 	};
 
 	const handleAmountChange = (e) => {
-		setAmount(e.target.value);
+		setAmount(e.target.value.replace(/[^\d]+/g, ""));
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const newPay = {};
 		let isError = false;
-		if (cardNumber.length == 19) {
+		if (cardNumber.length == 16) {
 			newPay.cardNumber = cardNumber;
 		} else {
 			isError = true;
 			alert("Номер карты заполнен не корректно");
-			return
+			return;
 		}
 		if (expDate.length == 7) {
 			newPay.expDate = expDate;
 		} else {
 			isError = true;
 			alert("Срок карты заполнен не корректно");
-			return
+			return;
 		}
 		if (cvv.length == 3) {
 			newPay.cvv = cvv;
 		} else {
 			isError = true;
 			alert("cvv код заполнен не корректно");
-			return
+			return;
 		}
 		if (+amount > 0) {
 			newPay.amount = +amount;
 		} else {
 			isError = true;
 			alert("Сумма платежа заполнен не корректно, должно быть больше 0");
-			return
+			return;
 		}
 		if (!isError) {
 			addPayment(newPay);
@@ -101,7 +101,6 @@ const MyCard = () => {
 						/>
 						<InputElement
 							className="form-control amount"
-							// mask=""
 							type="text"
 							onChange={handleAmountChange}
 							value={amount}

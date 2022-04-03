@@ -69,10 +69,10 @@ button {
 
 .payment-list{
 	margin-top: 30px;
-	padding: 0 40px;
-	width: 80%;
+	padding: 0 40px;     
+	max-width: 100%;
 	max-height: 400px;
-	overflow-y: scroll;
+	overflow: scroll;
 	font-size: 20px;
 }
 .payment-list::-webkit-scrollbar {
