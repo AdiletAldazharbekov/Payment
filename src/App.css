@@ -1,38 +1,70 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	
+}
 .App {
-  text-align: center;
+	text-align: center;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.my-card {
+	width: 535px;
+	height: 343px;
+	border-radius: 15px;
+	padding: 30px;
+	background: rgb(245, 84, 84);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.card-opt {
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input {
+	border: none;
+	border-radius: 8px;
+	outline: none;
+	padding: 5px 15px;
+	font-size: 30px;
+	line-height: 0px;
+	text-align: center;
+	height: 45px;
+}
+.card-number {
+	width: 475px;
+}
+.exp-date {
+	width: 150px;
+}
+.cvv {
+	width: 100px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.conf {
+	display: flex;
+text-align: end;
 }
-
-.App-link {
-  color: #61dafb;
+button {
+	width: 200px;
+	height: 45px;
+	top: 200px;
+	right: 30px;
+	font-size: 30px;
+	text-align: center;
+	border-radius: 8px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.amount {
+	width: 200px;
 }
