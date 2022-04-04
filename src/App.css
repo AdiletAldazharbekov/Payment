@@ -16,10 +16,10 @@
 }
 
 .my-card {
-	width: 316px;
-	height: 205px;
+	width: 535px;
+	height: 343px;
+	padding: 25px;
 	border-radius: 15px;
-	padding: 5px;
 	background: rgb(245, 84, 84);
 	display: flex;
 	flex-direction: column;
@@ -28,7 +28,7 @@
 .card-opt {
 	display: flex;
 	justify-content: space-between;
-	gap: 5px;
+	gap: 15px;
 }
 
 input {
@@ -72,3 +72,40 @@ button {
 .payment-list::-webkit-scrollbar {
 	width: 0px;
 }
+@media (max-width: 425px) {
+
+	.my-card {
+		width: 316px;
+		height: 205px;
+		padding: 10px 5px;
+	}
+	.card-opt {
+		gap: 5px;
+	}
+	
+	
+	.card-number {
+		font-size: 16px;
+	}
+	.exp-date {
+		font-size: 16px;
+	}
+	.cvv {
+		font-size: 16px;
+	}
+	
+	button {
+		font-size: 16px;
+	}
+	.amount {
+		font-size: 16px;
+	}
+	
+	.payment-list {
+		font-size: 16px;
+		margin-top: 10px;
+		padding: 0 10px;
+		max-height: 500px;
+	}
+}
+

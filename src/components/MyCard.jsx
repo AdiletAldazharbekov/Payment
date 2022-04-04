@@ -37,6 +37,7 @@ const MyCard = () => {
 		} else {
 			isError = true;
 			alert("Номер карты заполнен не корректно");
+			document.querySelector('#inpCardNumber').focus();
 			return;
 		}
 		if (expDate.length == 7) {
@@ -44,6 +45,7 @@ const MyCard = () => {
 		} else {
 			isError = true;
 			alert("Срок карты заполнен не корректно");
+			document.querySelector('#inpExpDate').focus();
 			return;
 		}
 		if (cvv.length == 3) {
@@ -51,6 +53,7 @@ const MyCard = () => {
 		} else {
 			isError = true;
 			alert("cvv код заполнен не корректно");
+			document.querySelector('#inpCvv').focus();
 			return;
 		}
 		if (+amount > 0) {
@@ -58,6 +61,7 @@ const MyCard = () => {
 		} else {
 			isError = true;
 			alert("Сумма платежа заполнен не корректно, должно быть больше 0");
+			document.querySelector('#inpAmount').focus();
 			return;
 		}
 		if (!isError) {
@@ -75,6 +79,7 @@ const MyCard = () => {
 					<p>Введите данные карты </p>
 
 					<InputElement
+						id='inpCardNumber'
 						mask="9999 9999 9999 9999"
 						type="text"
 						className="form-control card-number"
@@ -84,6 +89,7 @@ const MyCard = () => {
 					/>
 					<div className="card-opt">
 						<InputElement
+							id='inpExpDate'
 							mask="99/2029"
 							type="text"
 							className="form-control exp-date"
@@ -92,6 +98,7 @@ const MyCard = () => {
 							placeholder="mm/yyyy"
 						/>
 						<InputElement
+							id='inpCvv'
 							mask="999"
 							type="text"
 							className="form-control cvv"
@@ -100,6 +107,7 @@ const MyCard = () => {
 							placeholder="cvv"
 						/>
 						<InputElement
+							id='inpAmount'
 							className="form-control amount"
 							type="text"
 							onChange={handleAmountChange}
